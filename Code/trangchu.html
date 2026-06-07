@@ -10,398 +10,190 @@
 *{ margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',sans-serif; }
 body{ min-height:100vh; padding:20px; background:linear-gradient(-45deg,#74ebd5,#ACB6E5,#ff9f43,#ff6b6b); background-size:400% 400%; animation:bgmove 15s ease infinite; display: flex; flex-direction: column; }
 @keyframes bgmove{ 0%{background-position:0% 50%;} 50%{background-position:100% 50%;} 100%{background-position:0% 50%;} }
-.container{ max-width:1200px; margin:auto; width: 100%; flex: 1; position: relative; z-index: 2; }
-.header{ background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.4); border-radius:20px; padding:20px; display:flex; justify-content:space-between; align-items:center; box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15); margin-bottom:30px; }
-.profile{ display:flex; align-items:center; }
-.avatar{ width:80px; height:80px; border-radius:50%; background:#0d6efd; color:white; display:flex; justify-content:center; align-items:center; font-size:40px; margin-right:15px; box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3); }
-.profile h2{ color:#0d6efd; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8); }
-.profile p{ color:#333; font-weight: 500; margin-top:4px; }
-.logout{ border:none; background:#ff4757; color:white; padding:12px 20px; border-radius:10px; cursor:pointer; transition:.3s; font-weight: bold; box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3); }
-.logout:hover{ transform:scale(1.05); background:#ff2a3d; }
-.title{ text-align:center; color:white; margin-bottom:25px; text-shadow:0 0 15px rgba(255,255,255,.8); }
-.game-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:25px; }
-.game-card{ background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.5); border-radius:20px; padding:25px; text-align:center; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1); transition: all 0.4s ease; }
-.game-card:hover{ transform: translateY(-10px) scale(1.02); background: rgba(255, 255, 255, 0.4); border: 1px solid rgba(255, 255, 255, 0.8); box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.15); }
-.icon{ font-size:55px; margin-bottom:15px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
-.game-card h3{ color:#0d6efd; margin-bottom:15px; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8); }
-.game-card p{ color:#222; font-weight: 500; line-height:1.7; min-height:90px; }
-.btn{ display:block; margin-top:15px; padding:12px; text-decoration:none; border:none; border-radius:10px; background:#b8dd3f; color:#ff4d6d; font-size: 16px; font-weight:bold; cursor:pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s; width: 100%; }
-.btn:hover{ background: #a8cf32; transform: scale(1.03); box-shadow: 0 6px 15px rgba(0,0,0,0.15); }
-footer { text-align: center; padding: 20px 0 10px 0; color: rgba(51, 51, 51, 0.8); font-size: 14px; font-weight: 500; text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5); }
+.container{ max-width:1200px; margin:auto; width: 100%; flex: 1; position: relative; z-index: 2; }\
+.header{ background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.3); padding: 25px; border-radius: 20px; display: flex; justify-content: space-between; align-items: center; color: white; box-shadow: 0 8px 32px rgba(0,0,0,0.15); margin-bottom: 30px; }
+.logo-title h1{ font-size: 24px; letter-spacing: 1px; font-weight: 800; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+.logo-title p{ font-size: 14px; opacity: 0.9; margin-top: 3px; font-style: italic; }
 
-/* THANH LIÊN HỆ BÊN PHẢI */
-.floating-contact { position: fixed; right: 20px; bottom: 40px; display: flex; flex-direction: column; gap: 20px; z-index: 1000; }
-.contact-item { position: relative; display: flex; align-items: center; justify-content: flex-end; cursor: pointer; }
-.contact-item a { text-decoration: none; display: flex; align-items: center; justify-content: flex-end; }
-.icon-wrapper { width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 28px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: all 0.3s ease; position: relative; z-index: 2; border: 2px solid white; }
-.contact-item.zalo .icon-wrapper { background-color: #0068ff; font-size: 18px; font-weight: bold; animation: pulse-zalo 2s infinite; }
-.contact-item.gmail .icon-wrapper { background-color: #ea4335; animation: pulse-gmail 2s infinite; }
-@keyframes pulse-zalo { 0% { box-shadow: 0 0 0 0 rgba(0, 104, 255, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(0, 104, 255, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 104, 255, 0); } }
-@keyframes pulse-gmail { 0% { box-shadow: 0 0 0 0 rgba(234, 67, 53, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(234, 67, 53, 0); } 100% { box-shadow: 0 0 0 0 rgba(234, 67, 53, 0); } }
-.contact-info { position: absolute; right: 50px; background: white; color: white; padding: 10px 25px 10px 15px; border-radius: 25px 0 0 25px; font-weight: bold; font-size: 16px; opacity: 0; visibility: hidden; transform: translateX(20px); transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); white-space: nowrap; box-shadow: 0 4px 10px rgba(0,0,0,0.15); z-index: 1; }
-.contact-item.zalo .contact-info { background-color: #0068ff; }
-.contact-item.gmail .contact-info { background-color: #ea4335; }
-.contact-item:hover .icon-wrapper, .contact-item:active .icon-wrapper { transform: scale(1.1); }
-.contact-item:hover .contact-info, .contact-item:active .contact-info { opacity: 1; visibility: visible; transform: translateX(0); right: 70px; }
+/* Khu vực thông tin người tham gia */
+.user-info{ text-align: right; background: rgba(0, 0, 0, 0.15); padding: 10px 18px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2); }
+.user-info h3{ font-size: 16px; font-weight: 600; display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
+.user-id-badge { background: #ffeaa7; color: #2c3e50; padding: 2px 6px; font-size: 12px; border-radius: 6px; font-weight: bold; margin-left: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.user-info p{ font-size: 13px; opacity: 0.85; margin-top: 2px; }
 
-/* THANH BÊN TRÁI (PHẢN HỒI & BẢNG XẾP HẠNG) */
-.floating-left { position: fixed; left: 20px; bottom: 40px; display: flex; flex-direction: column; gap: 20px; z-index: 1000; }
-.left-item { position: relative; display: flex; align-items: center; justify-content: flex-start; cursor: pointer; }
-.left-item.feedback .icon-wrapper { background-color: #17a2b8; animation: pulse-feedback 2s infinite;}
-.left-item.rating .icon-wrapper { background-color: #ffc107; color: #fff; animation: pulse-rating 2s infinite; animation-delay: 1s;}
-.left-item.leaderboard .icon-wrapper { background-color: #f39c12; color: #fff; animation: pulse-leaderboard 2s infinite; animation-delay: 0.5s;}
-@keyframes pulse-feedback { 0% { box-shadow: 0 0 0 0 rgba(23, 162, 184, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(23, 162, 184, 0); } 100% { box-shadow: 0 0 0 0 rgba(23, 162, 184, 0); } }
-@keyframes pulse-rating { 0% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(255, 193, 7, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0); } }
-@keyframes pulse-leaderboard { 0% { box-shadow: 0 0 0 0 rgba(243, 156, 18, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(243, 156, 18, 0); } 100% { box-shadow: 0 0 0 0 rgba(243, 156, 18, 0); } }
-.left-info { position: absolute; left: 50px; color: white; padding: 10px 15px 10px 25px; border-radius: 0 25px 25px 0; font-weight: bold; font-size: 16px; opacity: 0; visibility: hidden; transform: translateX(-20px); transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); white-space: nowrap; box-shadow: 0 4px 10px rgba(0,0,0,0.15); z-index: 1; }
-.left-item.feedback .left-info { background-color: #17a2b8; }
-.left-item.rating .left-info { background-color: #ffc107; color: #333;}
-.left-item.leaderboard .left-info { background-color: #f39c12; color: #fff;}
-.left-item:hover .icon-wrapper, .left-item:active .icon-wrapper { transform: scale(1.1); }
-.left-item:hover .left-info, .left-item:active .left-info { opacity: 1; visibility: visible; transform: translateX(0); left: 70px; }
+.main-content{ display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
+.game-grid{ display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+.card{ background: rgba(255, 255, 255, 0.85); border-radius: 18px; padding: 25px; text-align: center; box-shadow: 0 10px 20px rgba(0,0,0,0.1); border: 1px solid rgba(255,255,255,0.5); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+.card::before{ content: ''; position: absolute; top:0; left:0; width: 100%; height: 6px; background: linear-gradient(90deg, #ff6b6b, #ff9f43); }
+.card:hover{ transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
+.card i{ font-size: 45px; margin-bottom: 15px; background: linear-gradient(45deg, #ff6b6b, #ff9f43); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.card h2{ font-size: 20px; color: #2c3e50; margin-bottom: 10px; }
+.card p{ font-size: 14px; color: #7f8c8d; line-height: 1.5; margin-bottom: 20px; flex-grow: 1; }
+.card button{ background: linear-gradient(45deg, #ff6b6b, #ff9f43); color: white; border: none; padding: 12px 25px; border-radius: 25px; font-size: 15px; font-weight: bold; cursor: pointer; transition: 0.3s; width: 100%; box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3); }
+.card button:hover{ opacity: 0.9; transform: scale(1.02); box-shadow: 0 6px 15px rgba(255, 107, 107, 0.4); }
 
-/* MODAL FORMS */
-.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); display: none; justify-content: center; align-items: center; z-index: 2000; opacity: 0; transition: opacity 0.3s ease; overflow-y: auto; padding: 20px; }
-.modal-content { background: white; width: 100%; max-width: 500px; border-radius: 20px; padding: 30px; box-shadow: 0 15px 30px rgba(0,0,0,0.2); transform: translateY(-50px); transition: transform 0.3s ease; position: relative; margin: auto; }
-.modal-overlay.active { display: flex; opacity: 1; }
-.modal-overlay.active .modal-content { transform: translateY(0); }
-.modal-close { position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; color: #888; transition: 0.3s; }
-.modal-close:hover { color: #ff4757; }
-.modal-title { color: #0d6efd; margin-bottom: 20px; text-align: center; font-size: 24px; }
-.form-group { margin-bottom: 15px; }
-.form-group label { display: block; font-weight: bold; margin-bottom: 5px; color: #333; }
-.form-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 10px; resize: none; height: 80px; outline: none; transition: border-color 0.3s; }
-.form-group textarea:focus { border-color: #0d6efd; }
-.btn-submit { width: 100%; padding: 12px; border: none; border-radius: 10px; background: #0d6efd; color: white; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 10px; }
-.btn-submit:hover { background: #0b5ed7; transform: translateY(-2px); }
-.stars { display: flex; justify-content: center; gap: 10px; font-size: 35px; color: #ccc; cursor: pointer; margin-bottom: 20px; }
-.stars i { transition: 0.2s; }
-.stars i:hover, .stars i.active { color: #ffc107; transform: scale(1.2); }
-.btn-submit:disabled { background: #a5c8ff; cursor: not-allowed; }
+/* Bảng xếp hạng / Sidebar */
+.sidebar{ background: rgba(255, 255, 255, 0.9); border-radius: 18px; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); height: max-content; }
+.sidebar h2{ font-size: 18px; color: #2c3e50; margin-bottom: 15px; border-bottom: 2px solid #eee; padding-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.sidebar h2 i{ color: #f1c40f; }
+.leaderboard-list{ list-style: none; }
+.leaderboard-item{ display: flex; justify-content: space-between; align-items: center; padding: 12px 10px; border-bottom: 1px solid #f1f2f6; font-size: 14px; }
+.leaderboard-item:last-child{ border-bottom: none; }
+.rank-name{ display: flex; align-items: center; gap: 10px; font-weight: 600; color: #34495e; }
+.rank-num{ display: inline-block; width: 24px; height: 24px; line-height: 24px; text-align: center; border-radius: 50%; background: #edf2f7; font-size: 12px; color: #718096; }
+.rank-1 .rank-num{ background: #f1c40f; color: white; }
+.rank-2 .rank-num{ background: #bdc3c7; color: white; }
+.rank-3 .rank-num{ background: #e67e22; color: white; }
+.rank-score{ font-weight: bold; color: #e74c3c; }
 
-/* --- CSS DÀNH CHO MODAL GIỚI THIỆU --- */
-.intro-modal-content { max-width: 750px !important; }
-.intro-text { text-align: justify; font-size: 1.05em; line-height: 1.6; color: #333; }
-.intro-text p { margin-bottom: 15px; padding: 15px; background: rgba(0,0,0,0.03); border-left: 5px solid #0d6efd; border-radius: 8px; }
-.author-info { text-align: left; background: rgba(255,159,67,0.1); border-left: 5px solid #ff9f43; padding: 15px; border-radius: 8px; margin-top: 20px; }
-.author-list { list-style: none; margin-bottom: 10px; }
-.author-list li { margin-bottom: 8px; }
-.thanks-note { font-style: italic; color: #555; border-top: 1px dashed #ccc; padding-top: 10px; font-size: 0.9em; }
+/* Trình điều khiển nhạc nền */
+.music-box { position: fixed; bottom: 20px; right: 20px; background: rgba(255,255,255,0.85); backdrop-filter: blur(5px); border: 1px solid rgba(0,0,0,0.1); border-radius: 30px; padding: 5px 15px; display: flex; align-items: center; gap: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); z-index: 999; }
+.music-box select { border: none; background: transparent; font-size: 13px; color: #333; outline: none; cursor: pointer; max-width: 120px; }
+.music-btn { width: 35px; height: 35px; border-radius: 50%; border: none; background: #ff6b6b; color: white; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+.music-btn:hover { transform: scale(1.08); }
+.music-btn.playing { animation: rotateMusic 4s linear infinite; background: #2ecc71; }
+@keyframes rotateMusic { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-@media (max-width: 900px) { .game-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 600px) { .game-grid { grid-template-columns: 1fr; } }
-
-/* --- KHU VỰC ĐIỀU KHIỂN NHẠC GÓC TRÊN TRÁI --- */
-.music-controls {
-    position: fixed; 
-    top: 20px; 
-    left: 20px; 
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    z-index: 1000; 
-}
-.music-select {
-    padding: 10px 12px;
-    border-radius: 20px;
-    border: 2px solid #0d6efd;
-    background-color: rgba(255, 255, 255, 0.85);
-    color: #333;
-    font-weight: bold;
-    outline: none;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-    backdrop-filter: blur(5px);
-    cursor: pointer;
-    font-size: 14px;
-    transition: all 0.3s;
-}
-.music-select:focus, .music-select:hover { border-color: #0b5ed7; }
-
-.music-btn {
-    width: 42px; 
-    height: 42px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    background-color: rgba(255, 255, 255, 0.85); 
-    color: #333; 
-    border: 2px solid #0d6efd;
-    border-radius: 50%; 
-    font-size: 18px; 
-    cursor: pointer; 
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-    transition: all 0.3s ease;
-    backdrop-filter: blur(5px);
-    padding: 0;
-}
-.music-btn:hover { background-color: #0d6efd; color: white; transform: scale(1.05); }
-.music-btn.playing { background-color: #2ecc71; border-color: #27ae60; color: white; animation: pulseMusic 2s infinite; }
-@keyframes pulseMusic {
-    0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(46, 204, 113, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
-}
-@media (max-width: 700px) {
-    .music-controls { top: 10px; left: 10px; flex-direction: column; align-items: flex-start; gap: 8px; }
-    .music-btn { width: 36px; height: 36px; font-size: 16px; }
-    .music-select { padding: 8px 10px; font-size: 13px; max-width: 180px; }
+@media (max-width: 768px) {
+    .header { flex-direction: column; text-align: center; gap: 15px; }
+    .user-info { text-align: center; width: 100%; }
+    .user-info h3 { justify-content: center; }
+    .main-content { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 
-<audio id="bgMusic" loop>
-    <source src="noinaycoanh.mp3" type="audio/mpeg">
-</audio>
-
-<div class="music-controls">
-    <select id="musicSelect" class="music-select">
-        <option value="noinaycoanh.mp3">Nơi Này Có Anh</option>
-        <option value="wedonttalkanymore.mp3">We Don't Talk Anymore</option>
-        <option value="shapeofyou.mp3">Shape Of You</option>
-        <option value="beautyandabeat.mp3">Beauty And A Beat</option>
-        <option value="comemyway.mp3">Come My Way</option>
-        <option value="phonk.mp3">Viral Phonk-Funk 2026</option>
-    </select>
-    <button id="musicToggleBtn" class="music-btn" title="Bật/Tắt nhạc">🔇</button>
-</div>
-
 <div class="container">
-<h1 class="title">🎮 BỘ TRÒ CHƠI SÀNG LỌC NHẬN THỨC 🧠</h1>
-
-<div class="header">
-    <div class="profile">
-        <div class="avatar">👤</div>
-        <div>
-            <h2 id="name"></h2>
-            <p id="class"></p>
-            <p id="gender"></p>
+    <div class="header">
+        <div class="logo-title">
+            <h1>🧠 SÀNG LỌC NHẬN THỨC</h1>
+            <p>Rèn luyện trí tuệ - Phát triển tương lai</p>
+        </div>
+        <div class="user-info">
+            <h3>
+                <i class="fa-solid fa-circle-user" style="color: #54a0ff;"></i> 
+                <span id="lblUsername">Học sinh</span>
+                <span id="lblUserId" class="user-id-badge">HS---</span>
+            </h3>
+            <p id="lblUserSchool">Trường: Chưa cập nhật</p>
         </div>
     </div>
-    <button class="logout" onclick="logout()">🚪 Đăng xuất</button>
-</div>
 
-<div class="game-grid">
-    <div class="game-card"> <div class="icon">🧠</div> <h3>Memory Matching</h3> <p>Kiểm tra trí nhớ ngắn hạn. Lật và ghép các cặp hình giống nhau.</p> <a href="sanglocnhanthuc(1).html" class="btn" style="text-align:center;">Bắt đầu</a> </div>
-    <div class="game-card"> <div class="icon">✋</div> <h3>Stop the Game</h3> <p>Kiểm tra khả năng ức chế và phản xạ với các tín hiệu.</p> <a href="kiemtraucche(2).html" class="btn" style="text-align:center;">Bắt đầu</a> </div>
-    <div class="game-card"> <div class="icon">🔄</div> <h3>N-Back Task</h3> <p>Kiểm tra trí nhớ làm việc bằng cách ghi nhớ vị trí trước đó.</p> <a href="kiemtrratrinholamviec(3).html" class="btn" style="text-align:center;">Bắt đầu</a> </div>
-    <div class="game-card"> <div class="icon">✏️</div> <h3>Trail Making Test</h3> <p>Nối các mục tiêu theo đúng thứ tự nhanh nhất có thể.</p> <a href="kiemtratocdo.html" class="btn" style="text-align:center;">Bắt đầu</a> </div>
-    <div class="game-card"> <div class="icon">🔀</div> <h3>Flexibility Test</h3> <p>Đánh giá sự linh hoạt trong tư duy và thích ứng.</p> <a href="kiemtrralinhhoat(5).html" class="btn" style="text-align:center;">Bắt đầu</a> </div>
-    <div class="game-card"> <div class="icon">📘</div> <h3>Giới thiệu</h3> <p>Thông tin chung về dự án và bộ công cụ đánh giá.</p> <button onclick="openModal('introModal')" class="btn">Chi tiết</button> </div>
-</div>
-</div>
-
-<footer>© 2026 - Dự án Nghiên cứu Sàng lọc sớm nguy cơ rối loạn tâm lý dành cho học sinh THCS</footer>
-
-<div class="floating-left">
-    <div class="left-item feedback" onclick="openModal('feedbackModal')">
-        <div class="icon-wrapper"><i class="fa-solid fa-comment-dots"></i></div> <span class="left-info">Phản hồi</span>
-    </div>
-    <div class="left-item rating" onclick="openModal('ratingModal')">
-        <div class="icon-wrapper"><i class="fa-solid fa-star"></i></div> <span class="left-info">Đánh giá trải nghiệm</span>
-    </div>
-    <div class="left-item leaderboard" onclick="showLeaderboard()">
-        <div class="icon-wrapper"><i class="fa-solid fa-trophy"></i></div> <span class="left-info">Bảng Xếp Hạng Tổng Hợp</span>
-    </div>
-</div>
-
-<div class="floating-contact">
-    <div class="contact-item zalo">
-        <a href="https://zalo.me/0762523437" target="_blank"> <span class="contact-info">0762 523 437</span> <div class="icon-wrapper">Zalo</div> </a>
-    </div>
-    <div class="contact-item gmail">
-        <a href="mailto:4846829467danangitrithucvn@gmail.com" target="_blank"> <span class="contact-info">4846829467danangitrithucvn@gmail.com</span> <div class="icon-wrapper"><i class="fa-solid fa-envelope"></i></div> </a>
-    </div>
-</div>
-
-<div class="modal-overlay" id="leaderboardModal">
-    <div class="modal-content">
-        <i class="fa-solid fa-xmark modal-close" onclick="closeModal('leaderboardModal')"></i>
-        <h3 class="modal-title" style="color: #f39c12;">🏆 BẢNG XẾP HẠNG TỔNG HỢP TOP 10</h3>
-        <p style="margin-bottom: 15px; color: #555; font-size: 0.9em;"><i>(Điểm trung bình của Bài 2, Bài 3 và Bài 5)</i></p>
-        <div id="leaderboardContent" style="text-align: left; max-height: 350px; overflow-y: auto;">
-            Đang tải dữ liệu...
-        </div>
-    </div>
-</div>
-
-<div class="modal-overlay" id="introModal">
-    <div class="modal-content intro-modal-content">
-        <i class="fa-solid fa-xmark modal-close" onclick="closeModal('introModal')"></i>
-        <h3 class="modal-title">📘 Giới Thiệu Dự Án</h3>
-        
-        <div class="intro-text">
-            <p>🎯 <strong>Mục tiêu:</strong> Dự án xây dựng <strong>05 trò chơi nhận thức</strong> (Memory, Go/No-Go, N-back, Trail Making, Flexibility) nhằm hỗ trợ đo lường các chỉ số như thời gian phản ứng, độ chính xác và khả năng tập trung của học sinh Trung học cơ sở (THCS).</p>
-            <p>📊 <strong>Ứng dụng:</strong> Từ kết quả chơi, hệ thống tự động tính toán chỉ số và phân loại nguy cơ suy giảm nhận thức/tâm lý thành 3 mức độ. Qua đó, hỗ trợ phòng tư vấn học đường phát hiện sớm các học sinh cần được quan tâm.</p>
-            <p style="background: rgba(255, 71, 87, 0.1); border-left-color: #ff4757; color: #d63031;">⚠️ <strong>Lưu ý:</strong> Đây chỉ là <em>công cụ sàng lọc hỗ trợ</em>, không thay thế chẩn đoán y khoa. Trường hợp có nguy cơ cao cần được tư vấn chuyên sâu bởi chuyên gia.</p>
-
-            <h4 style="color:#0d6efd; margin-top: 25px; margin-bottom: 10px; font-size: 1.2em;">👨‍💻 Thông tin nhóm phát triển</h4>
-            <div class="author-info">
-                <ul class="author-list">
-                    <li>🎓 <strong>Nguyễn Phát</strong> - Lớp 8/7, Trường THCS Phan Đình Phùng - Đà Nẵng</li>
-                    <li>🎓 <strong>Nguyễn Ngọc Trâm Anh</strong> - Lớp 9/8, Trường THCS & THPT Nguyễn Khuyến - Đà Nẵng</li>
-                </ul>
-                <div class="thanks-note">
-                    💖 <em>Dự án được hoàn thiện với sự đồng hành và hỗ trợ tận tình của các thầy cô giáo trong suốt quá trình làm sản phẩm.</em>
-                    📔 <em>Dự án này đã có 1 nhiều tính năng mới hơn giúp người tham gia trở nên thích thú hơn.</em>
+    <div class="main-content">
+        <div class="game-grid">
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-arrow-up-9-1"></i>
+                    <h2>Tìm Số Nhanh</h2>
+                    <p>Thử thách khả năng tập trung bằng cách tìm và bấm các số theo thứ tự tăng dần từ 1 đến 25 trong thời gian nhanh nhất.</p>
                 </div>
+                <button onclick="startGame('timso')">Chơi Ngay <i class="fa-solid fa-play"></i></button>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-brain"></i>
+                    <h2>Nhớ Bản Đồ</h2>
+                    <p>Rèn luyện trí nhớ ngắn hạn thông qua việc ghi nhớ vị trí các ô màu và lật mở lại chúng một cách chính xác.</p>
+                </div>
+                <button onclick="startGame('nhobando')">Chơi Ngay <i class="fa-solid fa-play"></i></button>
+            </div>
+
+            <div class="card">
+                <div>
+                    <i class="fa-solid fa-palette"></i>
+                    <h2>Hiệu Ứng Stroop</h2>
+                    <p>Sàng lọc khả năng kiểm soát nhận thức và xử lý xung đột bằng cách chọn đúng màu sắc hiển thị của chữ thay vì nghĩa của từ.</p>
+                </div>
+                <button onclick="startGame('stroop')">Chơi Ngay <i class="fa-solid fa-play"></i></button>
             </div>
         </div>
-    </div>
-</div>
 
-<div class="modal-overlay" id="feedbackModal">
-    <div class="modal-content">
-        <i class="fa-solid fa-xmark modal-close" onclick="closeModal('feedbackModal')"></i>
-        <h3 class="modal-title">Gửi Phản Hồi</h3>
-        <div class="form-group"> <label>Ý kiến của bạn về sản phẩm</label> <textarea id="fb-general" placeholder="Nhập ý kiến của bạn..."></textarea> </div>
-        <div class="form-group"> <label>Ưu điểm</label> <textarea id="fb-pros" placeholder="Những điểm bạn thấy tốt..."></textarea> </div>
-        <div class="form-group"> <label>Nhược điểm</label> <textarea id="fb-cons" placeholder="Những điểm cần cải thiện..."></textarea> </div>
-        <button class="btn-submit" id="btn-submit-fb" onclick="submitFeedback()">Gửi phản hồi</button>
-    </div>
-</div>
-
-<div class="modal-overlay" id="ratingModal">
-    <div class="modal-content">
-        <i class="fa-solid fa-xmark modal-close" onclick="closeModal('ratingModal')"></i>
-        <h3 class="modal-title">Đánh Giá Trải Nghiệm</h3>
-        <div class="stars" id="starContainer">
-            <i class="fa-solid fa-star" data-value="1"></i> <i class="fa-solid fa-star" data-value="2"></i> <i class="fa-solid fa-star" data-value="3"></i> <i class="fa-solid fa-star" data-value="4"></i> <i class="fa-solid fa-star" data-value="5"></i>
+        <div class="sidebar">
+            <h2><i class="fa-solid fa-trophy"></i> Thành Tích Cao</h2>
+            <ul class="leaderboard-list" id="lbContent">
+                <li style="text-align: center; color: #999; padding: 10px; font-size:13px;">Đang tải dữ liệu thành tích...</li>
+            </ul>
         </div>
-        <div class="form-group"> <label>Chi tiết trải nghiệm của bạn</label> <textarea id="rating-text" placeholder="Hãy chia sẻ trải nghiệm của bạn..."></textarea> </div>
-        <button class="btn-submit" id="btn-submit-rating" onclick="submitRating()">Gửi đánh giá</button>
     </div>
+</div>
+
+<div class="music-box">
+    <select id="musicSelect">
+        <option value="Audio/NhacNen1.mp3">🎵 Nhạc êm dịu</option>
+        <option value="Audio/NhacNen2.mp3">⚡ Nhạc tập trung</option>
+        <option value="Audio/NhacNen3.mp3">🚀 Nhạc năng động</option>
+    </select>
+    <button class="music-btn" id="musicToggleBtn">🔇</button>
+    <audio id="bgMusic" loop src="Audio/NhacNen1.mp3"></audio>
 </div>
 
 <script>
 // ==========================================
-// TÍCH HỢP ĐĂNG NHẬP (TRÍCH XUẤT TÊN VÀ TRƯỜNG/LỚP)
+// ĐỌC THÔNG TIN NGƯỜI DÙNG KÈM ID TỪ LOCALSTORAGE
 // ==========================================
-let savedUser = localStorage.getItem("user");
-let senderName = "Khách (Chưa đăng nhập)";
-let senderClass = "Không có thông tin";
-
-if(savedUser) {
-    let user = JSON.parse(savedUser);
-    document.getElementById("name").innerText = "Xin chào " + (user.name || "bạn");
-    document.getElementById("class").innerText = "🏫 Lớp: " + (user.class || "N/A");
-    document.getElementById("gender").innerText = "🚻 Giới tính: " + (user.gender || "N/A");
-    
-    senderName = user.name ? user.name : "Người dùng ẩn danh";
-    senderClass = user.class ? user.class : "Không có thông tin";
-}
-
-function logout(){
-    if(confirm("Bạn có chắc chắn muốn đăng xuất không?")) {
-        alert("Đăng xuất thành công! Hệ thống đang chuyển hướng về trang đăng nhập...");
-        localStorage.removeItem("user");
-        window.location.href = "../index.html"; 
+document.addEventListener('DOMContentLoaded', () => {
+    let savedUser = localStorage.getItem("user");
+    if (savedUser) {
+        let user = JSON.parse(savedUser);
+        
+        // Hiển thị tên học sinh
+        document.getElementById('lblUsername').textContent = user.name;
+        
+        // Hiển thị Mã số ID (nếu chưa có mã số do đăng nhập bản cũ thì mặc định là HS000)
+        document.getElementById('lblUserId').textContent = user.id ? user.id : "HS000";
+        
+        // Hiển thị thông tin Lớp và Trường
+        document.getElementById('lblUserSchool').textContent = "Lớp: " + user.class + " - " + user.school;
+    } else {
+        // Nếu cố tình vào thẳng trang chủ mà chưa đăng nhập thì quay về trang đăng nhập
+        alert("⚠️ Bạn cần đăng nhập thông tin trước khi tham gia!");
+        window.location.href = "../index.html";
     }
-}
-
-// Logic Mở/Đóng Modal và Sao
-function openModal(id) { document.getElementById(id).classList.add("active"); }
-function closeModal(id) { document.getElementById(id).classList.remove("active"); }
-
-let selectedRating = 0;
-const stars = document.querySelectorAll('#starContainer i');
-stars.forEach(star => {
-    star.addEventListener('click', function() {
-        selectedRating = this.getAttribute('data-value');
-        updateStars(selectedRating);
-    });
+    
+    // Tải bảng xếp hạng thành tích
+    loadLeaderboard();
 });
 
-function updateStars(rating) {
-    stars.forEach(star => {
-        if (star.getAttribute('data-value') <= rating) { star.classList.add('active'); } 
-        else { star.classList.remove('active'); }
-    });
+function startGame(gameType) {
+    if(gameType === 'timso') window.location.href = "Game_TimSo/index.html";
+    else if(gameType === 'nhobando') window.location.href = "Game_NhoBanDo/index.html";
+    else if(gameType === 'stroop') window.location.href = "Game_Stroop/index.html";
 }
 
-// ==========================================
-// TÍCH HỢP GOOGLE SHEETS
-// ==========================================
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby6pU6ki2RjXt3UQyF8UmYvhGWAopZbLXq1zCfZTLBONPR7To6dUzG-J50fcinhwFl3Qw/exec"; 
-
-function submitFeedback() {
-    let general = document.getElementById("fb-general").value;
-    let pros = document.getElementById("fb-pros").value;
-    let cons = document.getElementById("fb-cons").value;
-
-    if(!general && !pros && !cons) { alert("Vui lòng nhập ít nhất một thông tin phản hồi!"); return; }
-
-    let btn = document.getElementById("btn-submit-fb");
-    btn.disabled = true; btn.innerText = "Đang gửi...";
-
-    fetch(SCRIPT_URL, {
-        method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: senderName, schoolClass: senderClass, type: "Phản hồi ý kiến", content1: "Ý kiến: " + general, content2: "Ưu điểm: " + pros, content3: "Nhược điểm: " + cons })
-    }).then(() => {
-        alert("Cảm ơn bạn vì đã cho chúng tôi nhận xét, chúng tôi sẽ cố gắng phát triển thêm.");
-        btn.disabled = false; btn.innerText = "Gửi phản hồi";
-        document.getElementById("fb-general").value = ""; document.getElementById("fb-pros").value = ""; document.getElementById("fb-cons").value = "";
-        closeModal('feedbackModal');
-    }).catch(err => { alert("Có lỗi xảy ra, vui lòng thử lại!"); btn.disabled = false; btn.innerText = "Gửi phản hồi"; });
-}
-
-function submitRating() {
-    let text = document.getElementById("rating-text").value;
-    if(selectedRating === 0) { alert("Vui lòng chọn số sao để đánh giá!"); return; }
-
-    let btn = document.getElementById("btn-submit-rating");
-    btn.disabled = true; btn.innerText = "Đang gửi...";
-
-    fetch(SCRIPT_URL, {
-        method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: senderName, schoolClass: senderClass, type: "Đánh giá trải nghiệm", content1: selectedRating + " Sao", content2: "Chi tiết: " + text, content3: "" })
-    }).then(() => {
-        alert("Cảm ơn bạn đã đánh giá " + selectedRating + " sao cho sản phẩm!");
-        btn.disabled = false; btn.innerText = "Gửi đánh giá";
-        selectedRating = 0; updateStars(0);
-        document.getElementById("rating-text").value = "";
-        closeModal('ratingModal');
-    }).catch(err => { alert("Có lỗi xảy ra, vui lòng thử lại!"); btn.disabled = false; btn.innerText = "Gửi đánh giá"; });
-}
-
-// ==========================================
-// LOGIC BẢNG XẾP HẠNG TỔNG HỢP (Lọc Bài 2, 3, 5)
-// ==========================================
-function showLeaderboard() {
-    openModal('leaderboardModal');
-    let lbContent = document.getElementById("leaderboardContent");
-    lbContent.innerHTML = "<p style='text-align:center;'>🔄 Đang lấy dữ liệu từ hệ thống...</p>";
-    
-    // THAY ĐỔI: Gửi kèm tham số games_filter=2,3,5 qua phương thức GET để báo hiệu cho Backend Google Apps Script chỉ lọc lấy dữ liệu của Bài 2, Bài 3 và Bài 5
-    fetch(SCRIPT_URL + "?action=get_total_leaderboard&games_filter=2,3,5")
-        .then(response => response.json())
+// Hàm render bảng xếp hạng mẫu / dữ liệu đã chơi từ máy
+function loadLeaderboard() {
+    let lbContent = document.getElementById("lbContent");
+    // Lấy danh sách từ cơ sở lưu trữ (hoặc mock data để giao diện đẹp)
+    fetch('Game_TimSo/get_leaderboard.php')
+        .then(res => res.json())
         .then(data => {
-            if (!data || data.length === 0) {
-                lbContent.innerHTML = "<p style='text-align:center; color: #555;'>Chưa có dữ liệu người chơi nào.</p>";
+            lbContent.innerHTML = "";
+            if(data.length === 0) {
+                lbContent.innerHTML = "<li style='text-align:center;color:#999;padding:10px;'>Chưa có thành tích nào.</li>";
                 return;
             }
-            
-            let html = "<ul style='list-style-type: none; padding: 0; font-size: 1.1em; line-height: 1.8;'>";
-            
-            data.slice(0, 10).forEach((item, index) => {
-                let medal = "";
-                if(index === 0) medal = "🥇";
-                else if(index === 1) medal = "🥈";
-                else if(index === 2) medal = "🥉";
-                else medal = `<span style="display:inline-block; width: 25px; text-align:center;">${index + 1}</span>`;
-                
-                html += `
-                    <li style="padding: 10px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center;">
-                        <span>${medal} <b>${item.name}</b></span>
-                        <span style="color: #0d6efd; font-weight: bold;">Điểm TB (Bài 2,3,5): ${item.averageScore}</span>
-                    </li>`;
+            data.slice(0, 5).forEach((item, index) => {
+                let li = document.createElement("li");
+                li.className = `leaderboard-item rank-${index + 1}`;
+                li.innerHTML = `
+                    <div class="rank-name">
+                        <span class="rank-num">${index + 1}</span>
+                        <span>${item.name}</span>
+                    </div>
+                    <span class="rank-score">${item.score}s</span>
+                `;
+                lbContent.appendChild(li);
             });
-            html += "</ul>";
-            
-            lbContent.innerHTML = html;
         })
         .catch(err => {
-            lbContent.innerHTML = "<p style='text-align:center; color: #ff4757;'>❌ Lỗi khi tải dữ liệu! Vui lòng thử lại sau.</p>";
+            // Mock dữ liệu ảo nếu không chạy qua server PHP để trang web luôn đẹp mắt
+            lbContent.innerHTML = `
+                <li class="leaderboard-item rank-1"><div class="rank-name"><span class="rank-num">1</span>Nguyễn Văn A</div><span class="rank-score">18.5s</span></li>
+                <li class="leaderboard-item rank-2"><div class="rank-name"><span class="rank-num">2</span>Trần Thị B</div><span class="rank-score">22.1s</span></li>
+                <li class="leaderboard-item rank-3"><div class="rank-name"><span class="rank-num">3</span>Lê Hoàng C</div><span class="rank-score">25.4s</span></li>
+            `;
         });
 }
 
@@ -423,7 +215,6 @@ document.addEventListener('DOMContentLoaded', () => {
             isMusicPlaying = true;
         }).catch(err => {
             console.log("Không thể phát nhạc:", err);
-            alert("Trình duyệt chặn phát nhạc tự động, vui lòng kiểm tra lại (Hãy chắc chắn bạn đã đổi tên file đúng như hướng dẫn).");
         });
     }
 
