@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đăng nhập - Sàng Lọc Nhận Thức</title>
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+body { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(-45deg, #667eea, #764ba2, #6dd5ed, #2193b0); background-size: 400% 400%; animation: bg 12s ease infinite; padding: 20px; }
+@keyframes bg { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+.box { width: 420px; background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.5); padding: 40px 35px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); transition: all 0.5s ease; }
+h1 { text-align: center; color: #ffffff; margin-bottom: 25px; font-size: 2em; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); letter-spacing: 1px; }
+input, select { width: 100%; padding: 14px; margin: 10px 0; background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(255, 255, 255, 0.8); border-radius: 12px; color: #333; font-size: 16px; outline: none; transition: 0.3s; }
+input::placeholder { color: #555; }
+input:focus, select:focus { background: rgba(255, 255, 255, 0.95); border-color: #fff; box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); transform: translateY(-2px); }
+button { width: 100%; padding: 14px; border: none; border-radius: 12px; background: linear-gradient(45deg, #0d6efd, #00d2ff); color: white; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 15px; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(13, 110, 253, 0.4); }
+button:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 25px rgba(13, 110, 253, 0.6); }
+
+.consent-group { display: flex; align-items: flex-start; margin-top: 15px; gap: 10px; }
+.consent-group input[type="checkbox"] { width: 22px; height: 22px; margin: 2px 0 0 0; cursor: pointer; accent-color: #0d6efd; }
+.consent-group label { color: white; font-size: 14.5px; line-height: 1.4; cursor: pointer; text-shadow: 0 1px 2px rgba(0,0,0,0.2); text-align: left; }
+
+.btn-secondary { background: rgba(255, 255, 255, 0.3); color: white; box-shadow: none; margin-top: 10px; font-size: 16px; }
+.btn-secondary:hover { background: rgba(255, 255, 255, 0.4); box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2); }
+
+.note-text { color: #ffeaa7; font-size: 13px; font-style: italic; margin-top: 12px; text-align: left; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
+.id-badge { background: rgba(0, 0, 0, 0.2); padding: 5px 10px; border-radius: 8px; display: inline-block; margin-bottom: 15px; font-weight: bold; color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+
+/* Thêm CSS cho bảng danh sách quản lý */
+.admin-link { margin-top: 20px; color: rgba(255,255,255,0.5); font-size: 13px; cursor: pointer; text-decoration: underline; }
+.admin-panel { display: none; width: 90%; max-width: 800px; background: white; padding: 25px; border-radius: 15px; margin-top: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); overflow-x: auto; }
+.admin-panel h3 { margin-bottom: 15px; color: #333; }
+table { width: 100%; border-collapse: collapse; margin-top: 10px; min-width: 500px; }
+th, td { border: 1px solid #ddd; padding: 10px; text-align: left; font-size: 14px; }
+th { background-color: #f4f6f9; color: #333; }
+tr:nth-child(even) { background-color: #f9f9f9; }
+</style>
+</head>
+<body>
+
+<div class="box">
+    <div id="welcomeBackForm" style="display: none; text-align: center;">
+        <h1>Chào mừng trở lại!</h1>
+        <div id="welcomeId" class="id-badge"></div>
+        <h2 id="welcomeName" style="color: #fff; margin-bottom: 5px; font-size: 1.5em; text-shadow: 0 2px 4px rgba(0,0,0,0.3);"></h2>
+        <p id="welcomeClass" style="color: #eee; margin-bottom: 5px; font-size: 1.1em;"></p>
+        <p id="welcomeCity" style="color: #ffeaa7; margin-bottom: 25px; font-size: 1em; font-style: italic;"></p>
+        
+        <button onclick="continueLogin()">Tiếp tục tham gia 🚀</button>
+        <button class="btn-secondary" onclick="showNewLogin()">Đăng nhập bằng tài khoản khác</button>
+    </div>
+
+    <div id="newLoginForm">
+        <h1>Đăng Nhập</h1>
+        <input type="text" id="name" placeholder="Họ và tên" required>
+        <input type="text" id="city" placeholder="Thành phố (Nơi ở)" required>
+        <input type="number" id="age" placeholder="Tuổi (11-15 tuổi)" required>
+        <input type="text" id="school" placeholder="Tên trường" required>
+        <input type="text" id="class" placeholder="Lớp (chỉ dành từ lớp 6-9)" required>
+        <select id="gender">
+            <option value="Nam">Nam</option>
+            <option value="Nữ">Nữ</option>
+        </select>
+        
+        <div class="consent-group">
+            <input type="checkbox" id="consent">
+            <label for="consent">Tôi hiểu rõ đây là công cụ hỗ trợ đánh giá nhận thức và đồng ý tham gia.</label>
+        </div>
+
+        <p class="note-text">(*): Tất cả các thông tin trên là bắt buộc phải điền.</p>
+
+        <button onclick="login()">Bắt đầu ngay 🚀</button>
+    </div>
+</div>
+
+<div class="admin-link" onclick="toggleAdminPanel()">🛠️ Xem danh sách dữ liệu học sinh (Admin)</div>
+
+<div id="adminPanel" class="admin-panel">
+    <h3>Danh Sách Học Sinh Đăng Nhập</h3>
+    <button onclick="clearAllData()" style="background: #dc3545; padding: 8px 15px; font-size: 14px; width: auto; margin-bottom: 10px; float: right;">Xóa hết dữ liệu</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Mã ID</th>
+                <th>Họ và Tên</th>
+                <th>Nơi ở</th>
+                <th>Tuổi</th>
+                <th>Trường</th>
+                <th>Lớp</th>
+                <th>Giới tính</th>
+                <th>Thời gian</th>
+            </tr>
+        </thead>
+        <tbody id="studentTableBody">
+            </tbody>
+    </table>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Kiểm tra xem máy này hiện tại đang giữ phiên đăng nhập nào không
+    let savedUser = localStorage.getItem("user");
+    if(savedUser) {
+        let user = JSON.parse(savedUser);
+        document.getElementById('newLoginForm').style.display = 'none';
+        document.getElementById('welcomeBackForm').style.display = 'block';
+        
+        document.getElementById('welcomeId').textContent = "Mã số: " + user.id;
+        document.getElementById('welcomeName').textContent = user.name;
+        document.getElementById('welcomeClass').textContent = "Lớp: " + user.class + " - " + user.school;
+        if(user.city) {
+            document.getElementById('welcomeCity').textContent = "Khu vực: " + user.city;
+        }
+    }
+    // Load danh sách vào bảng admin sẵn
+    renderAdminTable();
+});
+
+function continueLogin() {
+    window.location.href = "Code/trangchu.html";
+}
+
+function showNewLogin() {
+    localStorage.removeItem("user");
+    document.getElementById('welcomeBackForm').style.display = 'none';
+    document.getElementById('newLoginForm').style.display = 'block';
+}
+
+// HÀM TỰ ĐỘNG TĂNG ID: Đọc số thứ tự lớn nhất hiện tại, tăng 1 và trả về định dạng HSxxx
+function generateNextStudentId() {
+    let currentCount = parseInt(localStorage.getItem("studentCount") || "0", 10);
+    let nextCount = currentCount + 1;
+    
+    // Lưu lại số đếm mới để lần đăng nhập sau tăng tiếp
+    localStorage.setItem("studentCount", nextCount);
+    
+    // Đổi số sang định dạng chuỗi có 3 chữ số (1 -> 001, 12 -> 012)
+    let formattedNumber = String(nextCount).padStart(3, '0');
+    return "HS" + formattedNumber;
+}
+
+function login(){
+    let name = document.getElementById("name").value.trim();
+    let city = document.getElementById("city").value.trim();
+    let age = document.getElementById("age").value.trim();
+    let school = document.getElementById("school").value.trim();
+    let classVal = document.getElementById("class").value.trim();
+    let gender = document.getElementById("gender").value;
+
+    if(name == "" || city == "" || age == "" || school == "" || classVal == ""){
+        alert("⚠️ Vui lòng nhập đầy đủ tất cả các thông tin bắt buộc!"); return;
+    }
+
+    let userAge = parseInt(age, 10);
+    if(userAge < 11 || userAge > 15) {
+        alert("⚠️ Không được phép tham gia khi không thuộc lứa tuổi THCS (11-15 tuổi)!"); return;
+    }
+
+    let userClass = parseInt(classVal, 10);
+    if(isNaN(userClass) || userClass < 6 || userClass > 9) {
+        alert("⚠️ Không được phép tham gia! Chỉ dành cho học sinh thuộc cấp THCS (từ lớp 6 đến lớp 9)."); return;
+    }
+
+    if(!document.getElementById("consent").checked) {
+        alert("⚠️ Bạn cần xác nhận đồng ý tham gia ở hộp kiểm phía trên nút Bắt đầu!"); return;
+    }
+
+    // GỌI HÀM ĐỂ LẤY ID TỰ ĐỘNG TĂNG (Ví dụ: HS001, HS002...)
+    let studentId = generateNextStudentId();
+
+    let user = {
+        id: studentId,
+        name: name,
+        city: city,
+        age: age,
+        school: school,
+        class: classVal,
+        gender: gender,
+        loginTime: new Date().toLocaleString("vi-VN")
+    };
+
+    // 1. Lưu phiên đăng nhập hiện tại cho máy
+    localStorage.setItem("user", JSON.stringify(user));
+
+    // 2. ĐƯA VÀO DANH SÁCH TỔNG LƯU TRÊN TRÌNH DUYỆT
+    let userList = JSON.parse(localStorage.getItem("userList") || "[]");
+    userList.push(user);
+    localStorage.setItem("userList", JSON.stringify(userList));
+
+    // Chuyển hướng trang
+    window.location.href = "Code/trangchu.html";
+}
+
+// --- CÁC HÀM PHỤ TRỢ QUẢN LÝ DANH SÁCH ---
+function toggleAdminPanel() {
+    let panel = document.getElementById("adminPanel");
+    if(panel.style.display === "block") {
+        panel.style.display = "none";
+    } else {
+        renderAdminTable();
+        panel.style.display = "block";
+        panel.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+function renderAdminTable() {
+    let userList = JSON.parse(localStorage.getItem("userList") || "[]");
+    let tbody = document.getElementById("studentTableBody");
+    tbody.innerHTML = "";
+    
+    if(userList.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; color:#999;">Chưa có học sinh nào đăng nhập.</td></tr>`;
+        return;
+    }
+
+    userList.forEach(st => {
+        let row = `<tr>
+            <td><strong>${st.id}</strong></td>
+            <td>${st.name}</td>
+            <td>${st.city}</td>
+            <td>${st.age}</td>
+            <td>${st.school}</td>
+            <td>Lớp ${st.class}</td>
+            <td>${st.gender}</td>
+            <td>${st.loginTime}</td>
+        </tr>`;
+        tbody.innerHTML += row;
+    });
+}
+
+function clearAllData() {
+    if(confirm("💥 Bạn có chắc chắn muốn XÓA TOÀN BỘ danh sách học sinh và đặt lại số đếm ID về 0 không?")) {
+        localStorage.removeItem("user");
+        localStorage.removeItem("userList");
+        localStorage.removeItem("studentCount");
+        alert("Đã xóa hết dữ liệu làm sạch hệ thống!");
+        location.reload();
+    }
+}
+</script>
+</body>
+</html>
